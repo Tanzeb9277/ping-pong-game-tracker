@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ping Pong Game Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Match Type Selection Screen -->
+    <div class="match-selection" id="matchSelectionScreen">
+        <div class="selection-page-header">
+            <h1>Select Match Type</h1>
+        </div>
+        <div class="match-type-buttons">
+            <button id="singlesButton">Singles Match</button>
+            <button id="doublesButton">Doubles Match</button>
+        </div>
+    </div>
+
+    <!-- Character Selection Screen -->
+    <div class="character-selection" id="characterSelectionScreen" style="display: none;">
+        <h1>Select Characters</h1>
+        <div class="characters-container" id="charactersContainer"></div>
+        <button id="startMatchButton" style="display: none;">Start Match</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -17,9 +17,9 @@
         <div class="game-type-container">
             <h2>Ping Pong</h2>
         </div>
-            <div class="match-type-buttons">
-                <button id="singlesButton">Singles Match</button>
-                <button id="doublesButton">Doubles Match</button>
+        <div class="match-type-buttons">
+            <button id="singlesButton">Singles Match</button>
+            <button id="doublesButton">Doubles Match</button>
         </div>
     </div>
 
@@ -30,21 +30,22 @@
         <button id="startMatchButton" style="display: none;">Start Match</button>
     </div>
 
+    <!-- Match Screen -->
     <div id="matchScreen" style="display: none;">
         <h2>Match in Progress</h2>
-        
+
         <!-- Scoreboard -->
         <div id="scoreboard">
-            <div class="team-score">
+            <div class="team-score green">
                 <h3>Team Green</h3>
                 <p id="teamGreenScore">0</p>
             </div>
-            <div class="team-score">
+            <div class="team-score blue">
                 <h3>Team Blue</h3>
                 <p id="teamBlueScore">0</p>
             </div>
         </div>
-    
+
         <!-- Selected Player Display -->
         <div id="selectedPlayerDisplay" style="display: none;">
             <h3>Selected Player</h3>
@@ -54,18 +55,20 @@
             </div>
         </div>
 
-    
-        <!-- Buttons for Score and Fault -->
+      <!-- Player Selection for Score/Fault -->
+        <h3>Select Player</h3>
+        <div id="playerSelection"></div>
+
+        <!-- Score & Fault Buttons -->
         <div id="actionButtons">
             <button id="scoreButton">Score</button>
             <button id="faultButton">Fault</button>
         </div>
-    
-        <!-- Event Log -->
+
+        <!-- Match Log -->
         <h3>Match Log</h3>
         <ul id="eventLog"></ul>
     </div>
-    
 
     <script src="script.js"></script>
 </body>

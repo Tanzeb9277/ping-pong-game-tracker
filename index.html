@@ -30,6 +30,43 @@
         <button id="startMatchButton" style="display: none;">Start Match</button>
     </div>
 
+    <div id="matchScreen" style="display: none;">
+        <h2>Match in Progress</h2>
+        
+        <!-- Scoreboard -->
+        <div id="scoreboard">
+            <div class="team-score">
+                <h3>Team Green</h3>
+                <p id="teamGreenScore">0</p>
+            </div>
+            <div class="team-score">
+                <h3>Team Blue</h3>
+                <p id="teamBlueScore">0</p>
+            </div>
+        </div>
+    
+        <!-- Selected Player Display -->
+        <div id="selectedPlayerDisplay" style="display: none;">
+            <h3>Selected Player</h3>
+            <div class="selected-player-card">
+                <img id="selectedPlayerAvatar" src="" alt="Player Avatar">
+                <p id="selectedPlayerName"></p>
+            </div>
+        </div>
+
+    
+        <!-- Buttons for Score and Fault -->
+        <div id="actionButtons">
+            <button id="scoreButton">Score</button>
+            <button id="faultButton">Fault</button>
+        </div>
+    
+        <!-- Event Log -->
+        <h3>Match Log</h3>
+        <ul id="eventLog"></ul>
+    </div>
+    
+
     <script src="script.js"></script>
 </body>
 </html>

@@ -179,6 +179,52 @@ button:hover {
 }
 
 
+#scoreboard {
+    display: flex;
+    justify-content: space-around;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.team-score {
+    text-align: center;
+    font-weight: bold;
+}
+
+#playerSelection {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.player-btn {
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.player-btn:hover {
+    background-color: lightgray;
+}
+
+#actionButtons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+
 
 /* Responsive Styles */
 @media (max-width: 600px) {

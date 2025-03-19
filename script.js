@@ -87,6 +87,88 @@ function selectCharacter(character, index, characterDiv) {
     }
 }
 
+// Scores
+let teamScores = {
+    green: 0,
+    blue: 0
+};
+
+// Match log
+let matchLog = [];
+
+// Function to show the match screen
+function startMatch() {
+    document.getElementById('characterSelectionScreen').style.display = 'none';
+    document.getElementById('matchScreen').style.display = 'block';
+
+    renderPlayerSelection();
+}
+
+// Render players in the match screen for selection
+function renderPlayerSelection() {
+    const container = document.getElementById('playerSelection');
+    container.innerHTML = '';
+
+    [...selectedCharacters.green, ...selectedCharacters.blue].forEach((player, index) => {
+        const btn = document.createElement('button');
+        btn.textContent = player.name;
+        btn.classList.add('player-btn');
+        btn.addEventListener('click', () => selectPlayer(player));
+        container.appendChild(btn);
+    });
+}
+
+// Selected player for scoring/faults
+let selectedPlayer = null;
+
+// Function to select a player
+function selectPlayer(player) {
+    selectedPlayer = player;
+    console.log(`Selected player: ${player.name}`);
+}
+
+// Handle scoring
+document.getElementById('scoreButton').addEventListener('click', () => {
+    if (!selectedPlayer) return alert("Select a player first!");
+    
+    let team = selectedCharacters.green.includes(selectedPlayer) ? 'green' : 'blue';
+    teamScores[team]++;
+
+    updateScoreboard();
+    addMatchLog(`${selectedPlayer.name} scored for Team ${team === 'green' ? 'Green' : 'Blue'}!`);
+});
+
+// Handle fault
+document.getElementById('faultButton').addEventListener('click', () => {
+    if (!selectedPlayer) return alert("Select a player first!");
+
+    let faultingTeam = selectedCharacters.green.includes(selectedPlayer) ? 'green' : 'blue';
+    let awardingTeam = faultingTeam === 'green' ? 'blue' : 'green';
+    
+    teamScores[awardingTeam]++;
+
+    updateScoreboard();
+    addMatchLog(`${selectedPlayer.name} faulted! Point to Team ${awardingTeam === 'green' ? 'Green' : 'Blue'}.`);
+});
+
+// Update scoreboard UI
+function updateScoreboard() {
+    document.getElementById('teamGreenScore').textContent = teamScores.green;
+    document.getElementById('teamBlueScore').textContent = teamScores.blue;
+}
+
+// Add entry to match log
+function addMatchLog(entry) {
+    matchLog.push(entry);
+    let logEntry = document.createElement('li');
+    logEntry.textContent = entry;
+    document.getElementById('eventLog').appendChild(logEntry);
+}
+
+// Hook up the start match button
+document.getElementById('startMatchButton').addEventListener('click', startMatch);
+
+
 // Start match button
 document.getElementById('startMatchButton').addEventListener('click', () => {
     alert('Match Started!');

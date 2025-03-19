@@ -61,15 +61,29 @@ h1 {
 
 .selection-page-header {
     display: flex;
+    align-items: center;
+    gap: 10px;
     background: #202a43;
 }
 
 .selection-page-header h1 {
     color: #fff;
     display: inline-block;
-    font-size: 1.5em;
+    font-size: 20px;
+    line-height: 27px;
     margin: 0;
-    padding: 8px 4px;
+    padding: 8px 10px;
+
+}
+
+.selection-page-header h2{
+    color: #fff;
+}
+
+.game-type-container h2 {
+    font-size: 18px;
+    margin-left: 10px;
+    margin: 20px 10px;
 }
 
 .match-type-buttons {
@@ -78,6 +92,7 @@ h1 {
     width: 200px;
     gap: 10px;
     padding: 15px;
+    margin: 0 10px;
 }
 
 button {
@@ -89,9 +104,9 @@ button {
     cursor: pointer;
     display: inline-block;
     font-family: "Lucida Grande", Tahoma, Arial, Verdana, sans-serif;
-    font-size: 100%;
+    font-size: 90%;
     font-weight: bold;
-    padding: 5px;;
+    padding: 5px;
 }
 
 button:hover {
@@ -108,31 +123,62 @@ button:hover {
     margin-top: 20px;
 }
 
+/* General style for character slot */
 .character-slot {
+    width: 120px;
+    height: 180px;
+    margin: 10px;
+    border-radius: 10px;
+    border: 2px solid #ddd;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    width: 100%;
-    height: 150px;
-    background-color: #ddd;
-    border-radius: 8px;
+    justify-content: center;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.character-slot.selected {
+/* Avatar style */
+.character-slot img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%; /* Makes it round */
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+/* Name below avatar */
+.character-slot p {
+    font-size: 14px;
+    text-align: center;
+    color: #333;
+    margin: 0;
+}
+
+/* Hover effect to make it interactive */
+.character-slot:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Team-specific styles */
+.character-slot.green {
     background-color: #4CAF50;
     color: white;
 }
 
-.character-slot img {
-    max-width: 60%;
-    max-height: 100%;
+.character-slot.blue {
+    background-color: #2196F3;
+    color: white;
 }
 
-.character-slot.locked {
-    background-color: #ccc;
+/* Style for selected characters */
+.character-slot.selected {
+    opacity: 0.7;
+    border: 3px solid #fff;
 }
+
+
 
 /* Responsive Styles */
 @media (max-width: 600px) {

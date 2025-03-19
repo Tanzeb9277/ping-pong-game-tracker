@@ -1,16 +1,17 @@
 // Define some variables
+let matchType = '';  // "singles" or "doubles"
 let selectedCharacters = {
-    blue: [],
-    green: []
+    green: [],
+    blue: []
 };
 
 // Define unlocked and locked characters
 const unlockedCharacters = [
-    { name: "Player 1", img: "images/player1.png" },
-    { name: "Player 2", img: "images/player2.png" },
-    { name: "Player 3", img: "images/player3.png" },
-    { name: "Player 4", img: "images/player4.png" },
-    { name: "Player 5", img: "images/player5.png" },
+    { name: "Benzo", img: "images/player1.png" },
+    { name: "Audi", img: "images/player2.png" },
+    { name: "Mykel Solo", img: "images/player3.png" },
+    { name: "Miler", img: "images/player4.png" },
+    { name: "Schmuubie", img: "images/player5.png" },
     { name: "Player 6", img: "images/player6.png" },
     { name: "Player 7", img: "images/player7.png" },
     { name: "Player 8", img: "images/player8.png" }
@@ -20,10 +21,12 @@ const lockedCharacters = Array(12).fill({ name: "Locked", img: "images/locked.pn
 
 // Match Type Selection
 document.getElementById('singlesButton').addEventListener('click', () => {
+    matchType = 'singles';
     showCharacterSelection();
 });
 
 document.getElementById('doublesButton').addEventListener('click', () => {
+    matchType = 'doubles';
     showCharacterSelection();
 });
 
@@ -48,7 +51,7 @@ function renderCharacterSelection() {
         characterDiv.classList.add('character-slot');
         if (index < unlockedCharacters.length) {
             characterDiv.innerHTML = `<img src="${character.img}" alt="${character.name}"><p>${character.name}</p>`;
-            characterDiv.addEventListener('click', () => selectCharacter(character, index));
+            characterDiv.addEventListener('click', () => selectCharacter(character, index, characterDiv));
         } else {
             characterDiv.classList.add('locked');
             characterDiv.innerHTML = `<img src="${character.img}" alt="Locked"><p>Locked</p>`;
@@ -58,25 +61,30 @@ function renderCharacterSelection() {
 }
 
 // Handle character selection
-function selectCharacter(character, index) {
-    if (selectedCharacters.blue.length < 2) {
-        selectedCharacters.blue.push(character);
-        markSelected(index);
-    } else if (selectedCharacters.green.length < 2) {
+function selectCharacter(character, index, characterDiv) {
+    if (matchType === 'singles' && selectedCharacters.green.length < 1) {
         selectedCharacters.green.push(character);
-        markSelected(index);
+        characterDiv.classList.add('selected', 'green');  // Add green class for singles
+    } 
+    else if (matchType === 'singles' && selectedCharacters.blue.length < 1) {
+        selectedCharacters.blue.push(character);
+        characterDiv.classList.add('selected', 'blue');  // Add blue class for singles
+    } 
+    else if (matchType === 'doubles') {
+        if (selectedCharacters.green.length < 2) {
+            selectedCharacters.green.push(character);
+            characterDiv.classList.add('selected', 'green');
+        } else if (selectedCharacters.blue.length < 2) {
+            selectedCharacters.blue.push(character);
+            characterDiv.classList.add('selected', 'blue');
+        }
     }
 
-    // Check if both teams have been selected
-    if (selectedCharacters.blue.length === 2 && selectedCharacters.green.length === 2) {
+    // Check if the match type has all necessary selections
+    if ((matchType === 'singles' && selectedCharacters.green.length === 1 && selectedCharacters.blue.length === 1) ||
+        (matchType === 'doubles' && selectedCharacters.green.length === 2 && selectedCharacters.blue.length === 2)) {
         document.getElementById('startMatchButton').style.display = 'block';
     }
-}
-
-// Mark character as selected
-function markSelected(index) {
-    const slots = document.querySelectorAll('.character-slot');
-    slots[index].classList.add('selected');
 }
 
 // Start match button
